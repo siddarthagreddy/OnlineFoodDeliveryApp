@@ -19,7 +19,7 @@ namespace Mango.Services.EmailAPI
             optionBuilder.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
             builder.Services.AddSingleton(new EmailService(optionBuilder.Options));
 
-
+            builder.Services.AddHostedService<RabbitMQAuthConsumer>();
             builder.Services.AddSingleton<IAzureServiceBusConsumer, AzureServiceBusConsumer>();
 
             builder.Services.AddControllers();
